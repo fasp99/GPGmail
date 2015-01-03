@@ -1,22 +1,17 @@
 {
-"name": "GPGmail",
-"version": "1.0",
-"background": {
-    "scripts": [
-	"lib/gmail.js",
-	"lib/jquery-2.1.1.min.js"
-	],
-    "persistent": true
-  },
-"web_accessible_resources": [
-	"lib/gmail.js",
-	"lib/jquery-2.1.1.min.js"
-  ],
-"content_scripts": [
+  "name": "Gmail.js",
+  "version": "0.1",
+  "description": "Hello World Gmail chrome extension",
+  "content_scripts": [
 	{
-	"matches": ["*://*.mail.google.com/*"],
-	"js": ["inject.js"]
-}
-],
-"manifest_version": 2
+	  "matches": ["https://*.google.com/*"],
+	  "js": ["content.js"]
+	}
+  ],
+  "web_accessible_resources": [
+	"lib/jquery-2.1.1.min.js",
+	"lib/gmail.js",
+	"inject.js"
+  ],
+  "manifest_version": 2
 }
