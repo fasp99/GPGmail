@@ -1,5 +1,26 @@
+var gmail;
+
+function refresh(f) {
+	if(/in/.test(document.readyState)) {
+		setTimeout('refresh(' + f + ')', 10);
+	} else {
+	f();
+	}
+}
+
+
+var main = function(){
+// NOTE: Always use the latest version of gmail.js from
+// https://github.com/KartikTalwar/gmail.js
+	gmail = new Gmail();
+	console.log('Hello,', gmail.get.user_email())
+	alert('Hello,', gmail.get.user_email());
+}
+
+refresh(main);
+
 function hashCheck() {
-    if (/^#inbox\/.*/.test(location.hash)) {
+	if (/^#inbox\/.*/.test(location.hash)) {
 		mailOpened();
 	}
 	else {
@@ -7,29 +28,9 @@ function hashCheck() {
 }
 window.addEventListener('hashchange', hashCheck);
 hashCheck();
-
 function mailOpened() {
-	console.log("entering mailOpened"	);
-
-	var jq = document.createElement('script');
-	jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js";
-	document.body.appendChild(jq);
-
-	var gmsrc = document.createElement('script');
-	gmsrc.src = "https://rawgit.com/KartikTalwar/gmail.js/master/src/gmail.js";
-	//gmsrc.src = "https://s3.amazonaws.com/bucket/gmail.js";
-	document.getElementsByTagName('body')[0].appendChild(gmsrc);
-	//document.body.appendChild(gmsrc);
-	
-	// this doesnt work:
-	var name = gmsrc.get.user_email();
-	
-	/* Here goes the onload listener */
-	// this also doesnt work:
-	gmsrc.onload = function () {
-	var gmail = Gmail();
-	console.log(gmail);
-	var name = gmsrc.get.user_email();
-	alert(name);
-	}
+gmail = new Gmail();
+var subject = gmail.get.email_subject();
+	alert(subject);
+	console.log('Subject: ', subject)
 }
